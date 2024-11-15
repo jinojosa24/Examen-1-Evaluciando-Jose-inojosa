@@ -47,14 +47,17 @@ En la networks se le definira la IP para que sea fija. Esto sirve a la hora de b
 
 
 ### ¿Que comando de consola puedo usar para saber las ips de los contenedores anteriores? Filtra todo lo que puedas la salida.
+`docker networks inspect (nombre del contenedor.)`
     
 ### ¿Cual es la funcionalidad del apartado "ports" en docker compose?
 
 Esto permite el acceso al servicio DNS en el contenedor a través del puerto 54 del host.
     
 ### ¿Para que sirve el registro CNAME? Pon un ejemplo
+El registro CNAME sirve como alias, sirve tambien para asociar dominios con dominios que ya existe.
     
 ### ¿Como puedo hacer para que la configuración de un contenedor DNS no se borre  ¿si creo otro contenedor?
+
 
 ### Añade una zona tiendadeelectronica.int en tu docker DNS que tenga
 
