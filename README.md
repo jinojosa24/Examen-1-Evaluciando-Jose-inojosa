@@ -58,11 +58,11 @@ Esto permite el acceso al servicio DNS en el contenedor a través del puerto 54 
 
 ### Añade una zona tiendadeelectronica.int en tu docker DNS que tenga
 
-        www a la IP 172.16.0.1
-        owncloud sea un CNAME de www
-        un registro de texto con el contenido "1234ASDF"
-        Comprueba que todo funciona con el comando "dig"
-        Muestra en los logs que el servicio arranca correctamente
+*www a la IP 172.16.0.1*
+*owncloud sea un CNAME de www*
+*un registro de texto con el contenido "1234ASDF"*
+*Comprueba que todo funciona con el comando "dig"*
+*Muestra en los logs que el servicio arranca correctamente*
 
 Resulatdos con el comando dig.
 
