@@ -15,17 +15,6 @@ Se abre ventana de la consola y  ahora con el comando `docker compose exec -it (
 El contenedor en ejecucion con el comando `docker compose up`
 
 ### ¿Cómo sería un fichero docker-compose para que dos contenedores se comuniquen entre si en una red solo de ellos?
-  cliente:
-    container_name: cliente
-    image: alpine:latest
-    tty: true
-    stdin_open: true
-    dns:
-      - 172.20.5.1  
-    networks:
-      bind9_subnet:
-        ipv4_address: 172.20.5.2
-
 networks:
   bind9_subnet:
     driver: bridge
@@ -65,15 +54,37 @@ Esto permite el acceso al servicio DNS en el contenedor a través del puerto 54 
     
 ### ¿Para que sirve el registro CNAME? Pon un ejemplo
     
-### ¿Como puedo hacer para que la configuración de un contenedor DNS no se borre 
-   
-    ¿si creo otro contenedor?
+### ¿Como puedo hacer para que la configuración de un contenedor DNS no se borre  ¿si creo otro contenedor?
 
-Añade una zona tiendadeelectronica.int en tu docker DNS que tenga
+### Añade una zona tiendadeelectronica.int en tu docker DNS que tenga
+
         www a la IP 172.16.0.1
         owncloud sea un CNAME de www
         un registro de texto con el contenido "1234ASDF"
         Comprueba que todo funciona con el comando "dig"
         Muestra en los logs que el servicio arranca correctamente
-        Realiza el apartado 9 en la máquina virtual con DNS
+
+Resulatdos con el comando dig.
+
+; <<>> DiG 9.20.3 <<>> @172.16.5.1 tiendadeelectronica.int
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 37614
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 0db0a93c32a90fad010000006737939644c846cd011126d4 (good)
+;; QUESTION SECTION:
+;tiendadeelectronica.int.	IN	A
+
+;; AUTHORITY SECTION:
+int.			3371	IN	SOA	sns.dns.icann.org. noc.dns.icann.org. 2024110512 3600 1800 604800 3600
+
+;; Query time: 1 msec
+;; SERVER: 172.16.5.1#53(172.16.5.1) (UDP)
+;; WHEN: Fri Nov 15 18:31:50 UTC 2024
+;; MSG SIZE  rcvd: 137
+
+/ # 
 

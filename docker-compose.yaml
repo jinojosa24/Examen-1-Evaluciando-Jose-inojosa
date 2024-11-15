@@ -1,0 +1,35 @@
+services:
+  bind9:
+    image: internetsystemsconsortium/bind9:9.20 
+    container_name: bind9
+    ports:
+      - "54:53/tcp"  
+      - "54:53/udp" 
+    networks:
+      bind9_subnet:
+        ipv4_address: 172.16.5.1
+    volumes:
+      - ./zonas:/home/jose/clonacion/zonas
+      - ./conf:/home/jose/clonacion/conf
+    restart: always
+
+  cliente:
+    container_name: cliente
+    image: alpine:latest
+    tty: true
+    stdin_open: true
+    dns:
+      - 172.16.5.1  
+    networks:
+      bind9_subnet:
+        ipv4_address: 172.16.5.2
+
+networks:
+  bind9_subnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.0.0/16
+          ip_range: 172.16.5.0/24
+          gateway: 172.16.5.254
+
